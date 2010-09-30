@@ -1,0 +1,214 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXFileReference section */
+		B6CE0CAA0D88B1E2007B3ABB /* .depend */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = .depend; path = ../progs/sg/.depend; sourceTree = "<group>"; };
+		B6CE0CAE0D88B1E2007B3ABB /* FreeMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeMono.ttf; sourceTree = "<group>"; };
+		B6CE0CAF0D88B1E2007B3ABB /* FreeMonoBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeMonoBold.ttf; sourceTree = "<group>"; };
+		B6CE0CB00D88B1E2007B3ABB /* FreeMonoBoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeMonoBoldOblique.ttf; sourceTree = "<group>"; };
+		B6CE0CB10D88B1E2007B3ABB /* FreeMonoOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeMonoOblique.ttf; sourceTree = "<group>"; };
+		B6CE0CB20D88B1E2007B3ABB /* FreeSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeSans.ttf; sourceTree = "<group>"; };
+		B6CE0CB30D88B1E2007B3ABB /* FreeSansBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeSansBold.ttf; sourceTree = "<group>"; };
+		B6CE0CB40D88B1E2007B3ABB /* FreeSansBoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeSansBoldOblique.ttf; sourceTree = "<group>"; };
+		B6CE0CB50D88B1E2007B3ABB /* FreeSansOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeSansOblique.ttf; sourceTree = "<group>"; };
+		B6CE0CB60D88B1E2007B3ABB /* FreeSerif.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeSerif.ttf; sourceTree = "<group>"; };
+		B6CE0CB70D88B1E2007B3ABB /* FreeSerifBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeSerifBold.ttf; sourceTree = "<group>"; };
+		B6CE0CB80D88B1E2007B3ABB /* FreeSerifBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeSerifBoldItalic.ttf; sourceTree = "<group>"; };
+		B6CE0CB90D88B1E2007B3ABB /* FreeSerifItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FreeSerifItalic.ttf; sourceTree = "<group>"; };
+		B6CE0CBA0D88B1E2007B3ABB /* list.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../progs/sg/list.c; sourceTree = "<group>"; };
+		B6CE0CBB0D88B1E2007B3ABB /* list.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = list.h; path = ../progs/sg/list.h; sourceTree = "<group>"; };
+		B6CE0CBD0D88B1E2007B3ABB /* m_util.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = m_util.c; path = ../progs/sg/m_util.c; sourceTree = "<group>"; };
+		B6CE0CBE0D88B1E2007B3ABB /* m_util.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = m_util.h; path = ../progs/sg/m_util.h; sourceTree = "<group>"; };
+		B6CE0CC10D88B1E2007B3ABB /* main.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = main.c; path = ../progs/sg/main.c; sourceTree = "<group>"; };
+		B6CE0CC30D88B1E2007B3ABB /* Makefile */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.make; name = Makefile; path = ../progs/sg/Makefile; sourceTree = "<group>"; };
+		B6CE0CC40D88B1E2007B3ABB /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SDLMain.h; path = ../progs/sg/SDLMain.h; sourceTree = "<group>"; };
+		B6CE0CC50D88B1E2007B3ABB /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SDLMain.m; path = ../progs/sg/SDLMain.m; sourceTree = "<group>"; };
+		B6CE0CC60D88B1E2007B3ABB /* sg.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = sg.c; path = ../progs/sg/sg.c; sourceTree = "<group>"; };
+		B6CE0CC70D88B1E2007B3ABB /* sg.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = sg.h; path = ../progs/sg/sg.h; sourceTree = "<group>"; };
+		B6CE0CC90D88B1E2007B3ABB /* test.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = test.bmp; path = ../progs/sg/test.bmp; sourceTree = "<group>"; };
+		B6CE0CCA0D88B1E2007B3ABB /* TODO */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = TODO; path = ../progs/sg/TODO; sourceTree = "<group>"; };
+		B6CE0CCB0D88B1E2007B3ABB /* util.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = util.c; path = ../progs/sg/util.c; sourceTree = "<group>"; };
+		B6CE0CCC0D88B1E2007B3ABB /* util.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = util.h; path = ../progs/sg/util.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* sg_xcode */ = {
+			isa = PBXGroup;
+			children = (
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C6A0FF2B0290797F04C91782 /* Documentation */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = sg_xcode;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B6CE0CAA0D88B1E2007B3ABB /* .depend */,
+				B6CE0CAC0D88B1E2007B3ABB /* fonts */,
+				B6CE0CBA0D88B1E2007B3ABB /* list.c */,
+				B6CE0CBB0D88B1E2007B3ABB /* list.h */,
+				B6CE0CBD0D88B1E2007B3ABB /* m_util.c */,
+				B6CE0CBE0D88B1E2007B3ABB /* m_util.h */,
+				B6CE0CC10D88B1E2007B3ABB /* main.c */,
+				B6CE0CC30D88B1E2007B3ABB /* Makefile */,
+				B6CE0CC40D88B1E2007B3ABB /* SDLMain.h */,
+				B6CE0CC50D88B1E2007B3ABB /* SDLMain.m */,
+				B6CE0CC60D88B1E2007B3ABB /* sg.c */,
+				B6CE0CC70D88B1E2007B3ABB /* sg.h */,
+				B6CE0CC90D88B1E2007B3ABB /* test.bmp */,
+				B6CE0CCA0D88B1E2007B3ABB /* TODO */,
+				B6CE0CCB0D88B1E2007B3ABB /* util.c */,
+				B6CE0CCC0D88B1E2007B3ABB /* util.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6CE0CAC0D88B1E2007B3ABB /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B6CE0CAD0D88B1E2007B3ABB /* sfd */,
+			);
+			name = fonts;
+			path = ../progs/sg/fonts;
+			sourceTree = "<group>";
+		};
+		B6CE0CAD0D88B1E2007B3ABB /* sfd */ = {
+			isa = PBXGroup;
+			children = (
+				B6CE0CAE0D88B1E2007B3ABB /* FreeMono.ttf */,
+				B6CE0CAF0D88B1E2007B3ABB /* FreeMonoBold.ttf */,
+				B6CE0CB00D88B1E2007B3ABB /* FreeMonoBoldOblique.ttf */,
+				B6CE0CB10D88B1E2007B3ABB /* FreeMonoOblique.ttf */,
+				B6CE0CB20D88B1E2007B3ABB /* FreeSans.ttf */,
+				B6CE0CB30D88B1E2007B3ABB /* FreeSansBold.ttf */,
+				B6CE0CB40D88B1E2007B3ABB /* FreeSansBoldOblique.ttf */,
+				B6CE0CB50D88B1E2007B3ABB /* FreeSansOblique.ttf */,
+				B6CE0CB60D88B1E2007B3ABB /* FreeSerif.ttf */,
+				B6CE0CB70D88B1E2007B3ABB /* FreeSerifBold.ttf */,
+				B6CE0CB80D88B1E2007B3ABB /* FreeSerifBoldItalic.ttf */,
+				B6CE0CB90D88B1E2007B3ABB /* FreeSerifItalic.ttf */,
+			);
+			path = sfd;
+			sourceTree = "<group>";
+		};
+		C6A0FF2B0290797F04C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		B6CE0CA00D88B16F007B3ABB /* main */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = B6CE0CA50D88B188007B3ABB /* Build configuration list for PBXLegacyTarget "main" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/piotrm/progs/sg;
+			dependencies = (
+			);
+			name = main;
+			passBuildSettingsInEnvironment = 1;
+			productName = main;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "sg_xcode" */;
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* sg_xcode */;
+			projectDirPath = "";
+			targets = (
+				B6CE0CA00D88B16F007B3ABB /* main */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB928A08733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		1DEB928B08733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+		B6CE0CA60D88B188007B3ABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = main;
+			};
+			name = Debug;
+		};
+		B6CE0CA70D88B188007B3ABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = main;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "sg_xcode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928A08733DD80010E9CD /* Debug */,
+				1DEB928B08733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6CE0CA50D88B188007B3ABB /* Build configuration list for PBXLegacyTarget "main" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6CE0CA60D88B188007B3ABB /* Debug */,
+				B6CE0CA70D88B188007B3ABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

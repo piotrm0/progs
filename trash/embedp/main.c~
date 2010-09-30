@@ -1,0 +1,104 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <errno.h>
+#include <time.h>
+#include <sys/types.h>
+
+#include "viewport.h"
+#include "common.h"
+#include "util.h"
+#include "gl_util.h"
+#include "m_util.h"
+
+GLvoid init_scene(GLvoid);
+GLvoid draw_scene(GLvoid);
+GLvoid draw_extras(GLvoid);
+GLvoid update_scene(GLvoid);
+GLvoid custom_keyboard(unsigned char key, int x, int y);
+GLvoid custom_special(int key, int x, int y);
+
+GLvoid capture_buffer();
+
+void update_world();
+void sample_world();
+
+#define POINTS 100
+v3** points;
+
+GLvoid init_scene(GLvoid) {
+  u_int i;
+  view_main = view_new(0,
+		       VIEW_NONE,
+		       GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT,
+		       0, 0,
+		       1, 1);
+  view_main->draw_func = draw_scene;
+
+  points = (v3**) calloc(POINTS, sizeof(v3*));
+  for (i = 0; i < POINTS; i++)
+    points[i] = v3_new(drand48()*2-1, drand48()*2-1, drand48()*2-1);
+
+}
+
+GLvoid update_world() {
+  sample_world();
+  draw_gl();
+}
+
+GLvoid sample_world() {
+}
+
+GLvoid update_scene() {
+}
+
+GLvoid draw_scene(GLvoid) {
+  u_int i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_DEPTH_BUFFER_BIT);
+
+  glMatrixMode(GL_MODELVIEW);
+  glPushMatrix();
+
+  glTranslatef(0,0,-5);
+
+  glRotatef(rot_x, 1.0f, 0.0f, 0.0f);
+  glRotatef(rot_y, 0.0f, 1.0f, 0.0f);
+  glRotatef(rot_z, 0.0f, 0.0f, 1.0f);
+
+  //  glBegin(GL_POINTS);
+  glBegin(GL_TRIANGLES);
+  //glBegin(GL_QUADS);
+  glColor3f(drand48(), drand48(), drand48());
+  for (i = 0; i < POINTS; i++)
+    gl_vertex_v3(points[i]);
+  glEnd();
+  glFlush();
+
+  glPopMatrix();
+}
+
+GLvoid custom_keyboard(unsigned char key, int x, int y) {
+  switch(key) {
+  case '\t':
+    break;
+  case 13: // carriage return
+    break;
+  case 27: // escape
+    exit(0);
+    break;
+  }   
+}
+
+GLvoid custom_special(int key, int x, int y) {
+  switch(key) {
+  case GLUT_KEY_LEFT:
+    break;
+  case GLUT_KEY_UP:
+    break;
+  case GLUT_KEY_RIGHT:
+    break;
+  case GLUT_KEY_DOWN:
+    break;
+  }
+}

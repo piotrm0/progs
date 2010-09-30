@@ -1,0 +1,53 @@
+DEBUG = 1
+
+ifndef OSTYPE
+OSTYPE = UNKNOWN
+endif
+
+INCPATH = /usr/local/include
+LIBPATH = /usr/local/lib
+LIBRARIES = 
+
+ifeq ($(OSTYPE), FreeBSD)
+  INCPATH += /usr/X11R6/include
+  LIBPATH += /usr/X11R6/lib
+else
+  LIBPATH += /sw/lib
+  LIBPATH += /System/Library/Frameworks/OpenGL.framework/Libraries
+  INCPATH += /sw/include /sw/include/SDL
+#  LIBRARIES += objc stdc++ SDLmain SDL
+  LIBRARIES = ObjC SDLmain SDL GL
+  FRAMEWORK = SDL Cocoa OpenGL
+endif
+
+CC      = gcc
+CFLAGS  = -O3 -Wall $(patsubst %,-I%,$(INCPATH)) -D_THREAD_SAFE -F/Library/Frameworks
+LDFLAGS = $(patsubst %,-L%,$(LIBPATH)) $(patsubst %,-framework %,$(FRAMEWORK)) $(patsubst %,-l%,$(LIBRARIES)) 
+FFLAGS = 
+
+ifdef DEBUG
+CFLAGS += -g -DDEBUG
+endif
+
+SRCS = main.c sg.c sg.h
+
+all: main
+
+clean:
+	rm -Rf *.o *~ main
+
+depend:
+	mkdep ${CFLAGS} ${SRCS}
+
+run: main
+	nice -n 20 ./main
+
+debug:
+	make clean
+	make
+	gdb main
+
+main: main.o
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+include .depend

@@ -1,0 +1,79 @@
+SplineFontDB: 2.0
+FontName: Untitled1
+FullName: Untitled1
+FamilyName: Untitled1
+Weight: Medium
+Copyright: Created by Piotr Mardziel with FontForge 2.0 (http://fontforge.sf.net)
+UComments: "2008-3-13: Created." 
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+LayerCount: 2
+Layer: 0 0 "Back" 
+Layer: 1 0 "Fore" 
+NeedsXUIDChange: 1
+XUID: [1021 120 1121041031 13726368]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1205393370
+ModificationTime: 1205393822
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+DEI: 0
+Encoding: ISO8859-1
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -24
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 64 16 4
+Grid
+570 786 m 25
+ 561 0 l 29
+39 807 m 25
+ 39 0 l 25
+EndSplineSet
+BeginChars: 256 1
+
+StartChar: A
+Encoding: 65 65 0
+Width: 604
+VWidth: 0
+Flags: HWO
+LayerCount: 2
+Fore
+SplineSet
+228 684 m 25
+ 189 423 l 25
+ 483 429 l 25
+ 504 705 l 25
+ 228 684 l 25
+0 0 m 29
+ 0 801 l 25
+ 604 801 l 25
+ 604 0 l 25
+ 447 51 l 25
+ 471 354 l 25
+ 201 354 l 25
+ 189 12 l 25
+ 0 0 l 29
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

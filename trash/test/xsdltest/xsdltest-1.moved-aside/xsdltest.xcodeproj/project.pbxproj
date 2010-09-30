@@ -1,0 +1,240 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXApplicationTarget section */
+		B6FCF86E0CAF9E1E00D1F611 /* main */ = {
+			isa = PBXApplicationTarget;
+			buildConfigurationList = B6FCF8720CAF9E1F00D1F611 /* Build configuration list for PBXApplicationTarget "main" */;
+			buildPhases = (
+				B6FCF8690CAF9E1E00D1F611 /* Headers */,
+				B6FCF86A0CAF9E1E00D1F611 /* Resources */,
+				B6FCF86B0CAF9E1E00D1F611 /* Sources */,
+				B6FCF86C0CAF9E1E00D1F611 /* Frameworks */,
+				B6FCF86D0CAF9E1E00D1F611 /* Rez */,
+			);
+			dependencies = (
+			);
+			name = main;
+			productInstallPath = "$(USER_APPS_DIR)";
+			productName = main;
+			productReference = B6FCF86F0CAF9E1E00D1F611 /* main.app */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string></string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string></string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1d1</string>
+</dict>
+</plist>
+";
+		};
+/* End PBXApplicationTarget section */
+
+/* Begin PBXBuildFile section */
+		B6FCF8800CAF9EB000D1F611 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B6FCF83D0CAF9D4100D1F611 /* main.c */; };
+		B6FCF8840CAF9F3700D1F611 /* SDL.h in Headers */ = {isa = PBXBuildFile; fileRef = B6FCF8830CAF9F3700D1F611 /* SDL.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B6FCF83D0CAF9D4100D1F611 /* main.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = main.c; path = ../sdl_test/main.c; sourceTree = SOURCE_ROOT; };
+		B6FCF83E0CAF9D9700D1F611 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
+		B6FCF86F0CAF9E1E00D1F611 /* main.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = main.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6FCF8830CAF9F3700D1F611 /* SDL.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SDL.h; path = /Library/Frameworks/SDL.framework/Versions/A/Headers/SDL.h; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6FCF86C0CAF9E1E00D1F611 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B6FCF8310CAF9CA000D1F611 = {
+			isa = PBXGroup;
+			children = (
+				B6FCF8830CAF9F3700D1F611 /* SDL.h */,
+				B6FCF83D0CAF9D4100D1F611 /* main.c */,
+				B6FCF83E0CAF9D9700D1F611 /* SDL.framework */,
+				B6FCF8700CAF9E1E00D1F611 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6FCF8700CAF9E1E00D1F611 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6FCF86F0CAF9E1E00D1F611 /* main.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B6FCF8690CAF9E1E00D1F611 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6FCF8840CAF9F3700D1F611 /* SDL.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXProject section */
+		B6FCF8330CAF9CA000D1F611 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = B6FCF8340CAF9CA000D1F611 /* Build configuration list for PBXProject "xsdltest" */;
+			hasScannedForEncodings = 0;
+			mainGroup = B6FCF8310CAF9CA000D1F611;
+			productRefGroup = B6FCF8700CAF9E1E00D1F611 /* Products */;
+			projectDirPath = "";
+			targets = (
+				B6FCF86E0CAF9E1E00D1F611 /* main */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B6FCF86A0CAF9E1E00D1F611 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		B6FCF86D0CAF9E1E00D1F611 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6FCF86B0CAF9E1E00D1F611 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6FCF8800CAF9EB000D1F611 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B6FCF8350CAF9CA000D1F611 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		B6FCF8360CAF9CA000D1F611 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		B6FCF8730CAF9E1F00D1F611 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OPTIMIZATION_CFLAGS = "-O3";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = main;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B6FCF8740CAF9E1F00D1F611 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = main;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6FCF8340CAF9CA000D1F611 /* Build configuration list for PBXProject "xsdltest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6FCF8350CAF9CA000D1F611 /* Debug */,
+				B6FCF8360CAF9CA000D1F611 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6FCF8720CAF9E1F00D1F611 /* Build configuration list for PBXApplicationTarget "main" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6FCF8730CAF9E1F00D1F611 /* Debug */,
+				B6FCF8740CAF9E1F00D1F611 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6FCF8330CAF9CA000D1F611 /* Project object */;
+}

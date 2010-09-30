@@ -1,0 +1,86 @@
+sim.o: sim.c /usr/include/stdlib.h /usr/include/machine/ansi.h \
+  /usr/include/ppc/ansi.h /usr/include/machine/types.h \
+  /usr/include/ppc/types.h /usr/include/sys/cdefs.h /usr/include/alloca.h \
+  /usr/include/stdio.h /usr/include/sys/types.h \
+  /usr/include/sys/appleapiopts.h /usr/include/machine/endian.h \
+  /usr/include/ppc/endian.h /usr/include/math.h \
+  /usr/include/architecture/ppc/math.h /usr/include/errno.h \
+  /usr/include/sys/errno.h /usr/include/time.h \
+  /usr/include/gcc/darwin/3.3/machine/limits.h /usr/include/ppc/limits.h \
+  viewport.h util.h /usr/include/string.h \
+  /usr/include/gcc/darwin/3.3/stdarg.h /usr/include/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/sys/time.h igl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
+  /System/Library/Frameworks/GLUT.framework/Headers/glut.h common.h \
+  gl_util.h /sw/include/png.h /usr/include/zlib.h /usr/include/zconf.h \
+  /sw/include/pngconf.h /usr/include/setjmp.h \
+  /usr/include/machine/setjmp.h /usr/include/ppc/setjmp.h \
+  /usr/include/machine/signal.h /usr/include/ppc/signal.h m_util.h
+common.o: common.c common.h /usr/include/stdlib.h \
+  /usr/include/machine/ansi.h /usr/include/ppc/ansi.h \
+  /usr/include/machine/types.h /usr/include/ppc/types.h \
+  /usr/include/sys/cdefs.h /usr/include/alloca.h /usr/include/stdio.h \
+  /usr/include/sys/types.h /usr/include/sys/appleapiopts.h \
+  /usr/include/machine/endian.h /usr/include/ppc/endian.h igl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
+  /System/Library/Frameworks/GLUT.framework/Headers/glut.h viewport.h \
+  /usr/include/errno.h /usr/include/sys/errno.h util.h \
+  /usr/include/string.h /usr/include/gcc/darwin/3.3/stdarg.h \
+  /usr/include/limits.h /usr/include/gcc/darwin/3.3/machine/limits.h \
+  /usr/include/ppc/limits.h /usr/include/sys/syslimits.h \
+  /usr/include/sys/time.h /usr/include/time.h
+util.o: util.c util.h /usr/include/stdio.h /usr/include/sys/types.h \
+  /usr/include/sys/appleapiopts.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/types.h /usr/include/ppc/types.h \
+  /usr/include/machine/ansi.h /usr/include/ppc/ansi.h \
+  /usr/include/machine/endian.h /usr/include/ppc/endian.h \
+  /usr/include/stdlib.h /usr/include/alloca.h /usr/include/string.h \
+  /usr/include/gcc/darwin/3.3/stdarg.h /usr/include/limits.h \
+  /usr/include/gcc/darwin/3.3/machine/limits.h /usr/include/ppc/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/sys/time.h \
+  /usr/include/time.h
+gl_util.o: gl_util.c gl_util.h /usr/include/stdlib.h \
+  /usr/include/machine/ansi.h /usr/include/ppc/ansi.h \
+  /usr/include/machine/types.h /usr/include/ppc/types.h \
+  /usr/include/sys/cdefs.h /usr/include/alloca.h /usr/include/stdio.h \
+  /usr/include/sys/types.h /usr/include/sys/appleapiopts.h \
+  /usr/include/machine/endian.h /usr/include/ppc/endian.h \
+  /usr/include/math.h /usr/include/architecture/ppc/math.h \
+  /usr/include/errno.h /usr/include/sys/errno.h /sw/include/png.h \
+  /usr/include/zlib.h /usr/include/zconf.h /sw/include/pngconf.h \
+  /usr/include/setjmp.h /usr/include/machine/setjmp.h \
+  /usr/include/ppc/setjmp.h /usr/include/machine/signal.h \
+  /usr/include/ppc/signal.h /usr/include/string.h /usr/include/time.h \
+  /usr/include/gcc/darwin/3.3/machine/limits.h /usr/include/ppc/limits.h \
+  util.h /usr/include/gcc/darwin/3.3/stdarg.h /usr/include/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/sys/time.h igl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
+  /System/Library/Frameworks/GLUT.framework/Headers/glut.h m_util.h
+viewport.o: viewport.c viewport.h /usr/include/errno.h \
+  /usr/include/sys/errno.h /usr/include/sys/cdefs.h \
+  /usr/include/sys/types.h /usr/include/sys/appleapiopts.h \
+  /usr/include/machine/types.h /usr/include/ppc/types.h \
+  /usr/include/machine/ansi.h /usr/include/ppc/ansi.h \
+  /usr/include/machine/endian.h /usr/include/ppc/endian.h util.h \
+  /usr/include/stdio.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/string.h /usr/include/gcc/darwin/3.3/stdarg.h \
+  /usr/include/limits.h /usr/include/gcc/darwin/3.3/machine/limits.h \
+  /usr/include/ppc/limits.h /usr/include/sys/syslimits.h \
+  /usr/include/sys/time.h /usr/include/time.h igl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
+  /System/Library/Frameworks/GLUT.framework/Headers/glut.h common.h
+m_util.o: m_util.c m_util.h /usr/include/stdio.h /usr/include/sys/types.h \
+  /usr/include/sys/appleapiopts.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/types.h /usr/include/ppc/types.h \
+  /usr/include/machine/ansi.h /usr/include/ppc/ansi.h \
+  /usr/include/machine/endian.h /usr/include/ppc/endian.h \
+  /usr/include/string.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/math.h /usr/include/architecture/ppc/math.h

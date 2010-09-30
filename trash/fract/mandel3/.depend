@@ -1,0 +1,145 @@
+main.o: main.c /usr/include/stdlib.h /usr/include/available.h \
+  /usr/include/_types.h /usr/include/sys/_types.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h /usr/include/sys/wait.h \
+  /usr/include/sys/signal.h /usr/include/sys/appleapiopts.h \
+  /usr/include/machine/signal.h /usr/include/i386/signal.h \
+  /usr/include/i386/_structs.h /usr/include/sys/_structs.h \
+  /usr/include/machine/_structs.h /usr/include/mach/i386/_structs.h \
+  /usr/include/sys/resource.h /usr/include/machine/endian.h \
+  /usr/include/i386/endian.h /usr/include/sys/_endian.h \
+  /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
+  /usr/include/machine/types.h /usr/include/i386/types.h \
+  /usr/include/stdio.h /usr/include/math.h \
+  /usr/include/architecture/i386/math.h /usr/include/errno.h \
+  /usr/include/sys/errno.h /usr/include/time.h /usr/include/_structs.h \
+  /usr/include/sys/types.h /usr/include/assert.h \
+  /Users/piotrm/progs/shared/viewport.h /Users/piotrm/progs/shared/util.h \
+  /usr/include/string.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h /usr/include/sys/time.h \
+  /usr/include/sys/_select.h /Users/piotrm/progs/shared/igl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /System/Library/Frameworks/GLUT.framework/Headers/glut.h common.h \
+  /Users/piotrm/progs/shared/gl_util.h /usr/local/include/png.h \
+  /usr/include/zlib.h /usr/include/zconf.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/sys/select.h \
+  /usr/local/include/pngconf.h /usr/include/setjmp.h \
+  /usr/include/machine/setjmp.h /usr/include/i386/setjmp.h \
+  /Users/piotrm/progs/shared/util.h /Users/piotrm/progs/shared/igl.h \
+  /Users/piotrm/progs/shared/m_util.h capture.h \
+  /usr/local/include/libavcodec/avcodec.h \
+  /usr/local/include/libavutil/avutil.h \
+  /usr/local/include/libavutil/common.h /usr/include/ctype.h \
+  /usr/include/runetype.h /usr/include/inttypes.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdint.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/local/include/libavutil/mem.h \
+  /usr/local/include/libavutil/mathematics.h \
+  /usr/local/include/libavutil/rational.h \
+  /usr/local/include/libavutil/intfloat_readwrite.h \
+  /usr/local/include/libavutil/log.h \
+  /usr/local/include/libavutil/avutil.h \
+  /usr/local/include/libavutil/pixfmt.h \
+  /usr/local/include/libswscale/swscale.h
+common.o: common.c common.h /usr/include/stdlib.h \
+  /usr/include/available.h /usr/include/_types.h \
+  /usr/include/sys/_types.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/_types.h /usr/include/i386/_types.h \
+  /usr/include/sys/wait.h /usr/include/sys/signal.h \
+  /usr/include/sys/appleapiopts.h /usr/include/machine/signal.h \
+  /usr/include/i386/signal.h /usr/include/i386/_structs.h \
+  /usr/include/sys/_structs.h /usr/include/machine/_structs.h \
+  /usr/include/mach/i386/_structs.h /usr/include/sys/resource.h \
+  /usr/include/machine/endian.h /usr/include/i386/endian.h \
+  /usr/include/sys/_endian.h /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
+  /usr/include/machine/types.h /usr/include/i386/types.h \
+  /usr/include/stdio.h /Users/piotrm/progs/shared/igl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /System/Library/Frameworks/GLUT.framework/Headers/glut.h \
+  /Users/piotrm/progs/shared/viewport.h /usr/include/errno.h \
+  /usr/include/sys/errno.h /usr/include/sys/types.h \
+  /Users/piotrm/progs/shared/util.h /usr/include/string.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h /usr/include/math.h \
+  /usr/include/architecture/i386/math.h /usr/include/sys/time.h \
+  /usr/include/time.h /usr/include/_structs.h /usr/include/sys/_select.h \
+  /Users/piotrm/progs/shared/igl.h
+capture.o: capture.c capture.h /usr/include/stdlib.h \
+  /usr/include/available.h /usr/include/_types.h \
+  /usr/include/sys/_types.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/_types.h /usr/include/i386/_types.h \
+  /usr/include/sys/wait.h /usr/include/sys/signal.h \
+  /usr/include/sys/appleapiopts.h /usr/include/machine/signal.h \
+  /usr/include/i386/signal.h /usr/include/i386/_structs.h \
+  /usr/include/sys/_structs.h /usr/include/machine/_structs.h \
+  /usr/include/mach/i386/_structs.h /usr/include/sys/resource.h \
+  /usr/include/machine/endian.h /usr/include/i386/endian.h \
+  /usr/include/sys/_endian.h /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
+  /usr/include/machine/types.h /usr/include/i386/types.h \
+  /usr/include/stdio.h /usr/include/string.h /usr/include/sys/types.h \
+  /usr/local/include/libavcodec/avcodec.h /usr/include/errno.h \
+  /usr/include/sys/errno.h /usr/local/include/libavutil/avutil.h \
+  /usr/local/include/libavutil/common.h /usr/include/ctype.h \
+  /usr/include/runetype.h /usr/include/inttypes.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdint.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h /usr/include/math.h \
+  /usr/include/architecture/i386/math.h \
+  /usr/local/include/libavutil/mem.h \
+  /usr/local/include/libavutil/mathematics.h \
+  /usr/local/include/libavutil/rational.h \
+  /usr/local/include/libavutil/intfloat_readwrite.h \
+  /usr/local/include/libavutil/log.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h \
+  /usr/local/include/libavutil/avutil.h \
+  /usr/local/include/libavutil/pixfmt.h \
+  /usr/local/include/libswscale/swscale.h /usr/include/assert.h \
+  /Users/piotrm/progs/shared/igl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glext.h \
+  /System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /System/Library/Frameworks/GLUT.framework/Headers/glut.h \
+  /Users/piotrm/progs/shared/util.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/include/sys/time.h /usr/include/time.h /usr/include/_structs.h \
+  /usr/include/sys/_select.h
+canvas.o: canvas.c canvas.h /usr/include/stdio.h /usr/include/_types.h \
+  /usr/include/sys/_types.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/_types.h /usr/include/i386/_types.h \
+  /usr/include/stdlib.h /usr/include/available.h /usr/include/sys/wait.h \
+  /usr/include/sys/signal.h /usr/include/sys/appleapiopts.h \
+  /usr/include/machine/signal.h /usr/include/i386/signal.h \
+  /usr/include/i386/_structs.h /usr/include/sys/_structs.h \
+  /usr/include/machine/_structs.h /usr/include/mach/i386/_structs.h \
+  /usr/include/sys/resource.h /usr/include/machine/endian.h \
+  /usr/include/i386/endian.h /usr/include/sys/_endian.h \
+  /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
+  /usr/include/machine/types.h /usr/include/i386/types.h \
+  /usr/include/string.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h /usr/include/assert.h \
+  /usr/include/sys/types.h

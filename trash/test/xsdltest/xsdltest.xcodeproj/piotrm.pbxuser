@@ -1,0 +1,109 @@
+// !$*UTF8*$!
+{
+	B6FCF8330CAF9CA000D1F611 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = B6FCF8710CAF9E1E00D1F611 /* main */;
+		activeTarget = B6FCF86E0CAF9E1E00D1F611 /* main */;
+		addToTargets = (
+			B6FCF86E0CAF9E1E00D1F611 /* main */,
+		);
+		codeSenseManager = B6FCF8380CAF9CA000D1F611 /* Code sense */;
+		executables = (
+			B6FCF8710CAF9E1E00D1F611 /* main */,
+		);
+		ignoreBreakpointsInProjectsDict = {
+		};
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					407,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					200,
+					227,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 212835488;
+			PBXWorkspaceStateSaveDate = 212835488;
+		};
+		sourceControlManager = B6FCF8370CAF9CA000D1F611 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	B6FCF8370CAF9CA000D1F611 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+		scmType = "";
+	};
+	B6FCF8380CAF9CA000D1F611 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	B6FCF86E0CAF9E1E00D1F611 /* main */ = {
+		activeExec = 0;
+		executables = (
+			B6FCF8710CAF9E1E00D1F611 /* main */,
+		);
+	};
+	B6FCF8710CAF9E1E00D1F611 /* main */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = main;
+		sourceDirectories = (
+		);
+	};
+}

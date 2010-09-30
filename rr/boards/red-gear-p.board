@@ -1,0 +1,22 @@
+size
+8 8
+walls
+4 0 - 5 0
+0 2 - 0 3
+6 2 - 7 2
+6 2 - 6 3
+2 4 - 2 3
+2 4 - 3 4
+3 4 - 3 5
+5 6 - 4 6
+5 6 - 5 5
+6 7 - 7 7
+7 7 - 7 6
+marks
+3 4 red gear
+5 6 yellow saturn
+2 4 green moon
+6 2 blue star
+prisms
+4 1 blue \
+6 3 yellow \

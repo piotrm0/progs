@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<movie width="800" height="600" framerate="24">
+  <background color="#ffffff"/>
+
+  <frame>
+    <clip import="classes.swf"/>
+
+    <clip id="decal_part" import="part.png"/>
+
+    <library>
+      <clip id="client"     class="client"/>
+      <clip id="connector"  class="connector"/>
+      <clip id="logger"     class="logger"/>
+      <clip id="gui_button" class="gui_button"/>
+      <clip id="gui_input"  class="gui_input"/>
+
+      <clip id="room"   class="room"/>
+      <clip id="mroom"  class="mroom"/>
+
+      <clip id="part">
+        <frame>
+	  <place id="decal_part" depth="1"/>
+	  <textfield id="text_label" width="200" height="100" size="10" font="vera" text="hail"/>
+	  <place id="text_label" name="text_label" depth="2"/>
+	  <stop/>
+	</frame>
+      </clip>
+    </library>
+
+    <place id="client" name="client_mc" x="0" y="0" depth="10"/>
+
+  </frame>
+
+</movie>
