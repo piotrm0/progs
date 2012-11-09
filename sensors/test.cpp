@@ -7,13 +7,13 @@
 #include <glm/glm.hpp>
 
 #include "ui.h"
+#include "common.h"
 #include "glcommon.h"
 
 using namespace std;
 
 //class Sensor {
 //}
-
 
 #define TOOL_DRAG 0
 #define TOOL_ZOOM 1
@@ -47,6 +47,7 @@ namespace {
 
   ui::Manager* uiManager;
   ui::Vertical* toolbar;
+  ui::Pane* board;
 }
 
 static void initWorld();
@@ -72,6 +73,14 @@ static void handleTimer(int t);
   return os;
   }*/
 
+void handleToolbarClick(ui::Element* e, glm::vec2 posDown, glm::vec2 posUp) {
+  cout << "upped: " << (*e) << endl;
+};
+
+void drawBoard(ui::Element* e) {
+
+}
+
 static void initUI() {
   uiManager = new ui::Manager();
 
@@ -80,17 +89,29 @@ static void initUI() {
   toolbar->padding = 2;
 
   ui::Button* b = new ui::Button("Drag");
-  b->size = glm::vec2(100, 20);
-  
+  b->size = glm::vec2(100, 20);  
+  b->setUpHandler(&handleToolbarClick);
+
   toolbar->addChild(b);
   
   b = new ui::Button("Zoom");
   b->size = glm::vec2(100, 20);
-  toolbar->addChild(b);
+  b->setUpHandler(&handleToolbarClick);
 
+  toolbar->addChild(b);
   toolbar->position = glm::vec2(10, 10);
 
   uiManager->addChild(toolbar);
+
+  board = new ui::Pane();
+  board->drawHandler = &drawBoard;
+  board->position = glm::vec2(0,0);
+  board->upper = glm::vec2(windowWidth, windowHeight);
+  board->lower = glm::vec2(0,0);
+  board->arrange();
+
+  uiManager->addChild(board);
+
   uiManager->arrange();
 }
 
@@ -237,7 +258,7 @@ static void handleDisplay() {
   glPushMatrix();
   glLoadIdentity();
 
-  toolbar->draw();
+  uiManager->draw();
 
   glPopMatrix();
 

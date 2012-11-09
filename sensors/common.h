@@ -9,4 +9,4 @@ typedef float float32;
 
 using namespace std;
 
-ostream& operator<<(ostream& os, glm::vec2* e);
+ostream& operator<<(ostream& os, glm::vec2& e);

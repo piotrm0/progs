@@ -16,10 +16,10 @@ OBJS := test.o common.o glcommon.o ui.o
 test: ${OBJS}
 	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
-common.o: common.cpp common.h
-glcommon.o: glcommon.cpp glcommon.h
-ui.o: ui.cpp ui.h
-test.o: test.cpp test.h
+#common.o: common.cpp common.h
+#glcommon.o: glcommon.cpp glcommon.h
+#ui.o: ui.cpp ui.h
+#test.o: test.cpp test.h
 
 %.o: %.cpp
 	$(CXX) $(CFLAGS) -c $< -o $@
@@ -41,9 +41,9 @@ clean:
 
 #freeglut: $(FREEGLUT_OBJS)
 
-#depend: .depend
+depend: .depend
 
-#.depend: ${SRCS}
-#	mkdep ${SRCS} ${CFLAGS}
+.depend: ${SRCS}
+	mkdep ${SRCS} ${CFLAGS}
 
-#include .depend
+include .depend
