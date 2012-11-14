@@ -28,6 +28,8 @@ namespace ui {
     clickHandler = NULL;
     overHandler = NULL;
     motionHandler = NULL;
+    downHandler = NULL;
+    upHandler = NULL;
   }
 
   void Element::setDownHandler(down_handler* h) { downHandler = h; }
@@ -46,8 +48,11 @@ namespace ui {
     Element* e;
     Element* captured = NULL;
 
+    cout << "Element::handleMouseClick" << endl;
+
     for (it = children.begin();
-	 it != children.end() && !captured;
+	 it != children.end() &&
+	   NULL == captured;
 	 ++it) {
       e = *it;
       if (e->isMouseOver) {
@@ -55,10 +60,14 @@ namespace ui {
       }
     }
 
+    cout << "handled children" << endl;
+
     if (NULL != clickHandler) {
       (*clickHandler)(this, pos, button, state);
     }
  
+    cout << "clickHandler handled" << endl;
+
     return captured;
   }
 
@@ -83,6 +92,7 @@ namespace ui {
   }
 
   void Element::handleMouseDown(glm::vec2 pos) {
+    cout << "Element::handleMouseDown" << endl;
     if (NULL != downHandler) {
       (*downHandler)(this, pos);
     }
@@ -142,9 +152,7 @@ namespace ui {
     }
   }
 
-  void Element::draw() {
-    //printf("drawing base element\n");
-
+  void Element::draw(glm::vec2 lower, glm::vec2 upper) {
     list<Element*>::iterator it;
     Element* e;
 
@@ -153,7 +161,7 @@ namespace ui {
 	 ++it) {
       e = *it;
 
-      e->draw();
+      e->draw(lower, upper);
     }    
 
     if (highlighted) {
@@ -163,26 +171,30 @@ namespace ui {
 			size.x, size.y);
       glEnd();
     }
-
   }
 
   void Element::addChild(Element* c) {
     children.push_back(c);
+    c->parent = this;
+    c->root = root;
+    c->manager = manager;
   }
   void Element::removeChild(Element* c) {
     children.remove(c);
+    c->parent = NULL;
+    c->root = NULL;
+    c->manager = NULL;
   }
 
   void Element::arrange() {
     list<Element*>::iterator it;
     Element* e;
 
-    printf("base arrange\n");
-
     it = children.begin();
     if (it != children.end()) {
       e = *it;
       e->arrange();
+
       lower = e->lower;
       upper = e->upper;
       size = e->size;
@@ -253,7 +265,8 @@ namespace ui {
   }
 
   Element* Button::handleMouseClick(glm::vec2 pos, uint button, uint state) {
-    Element::handleMouseClick(pos, button, state);
+    cout << "Button::handleMouseClick" << endl;
+    //Element::handleMouseClick(pos, button, state);
     return this;
   }
 
@@ -267,8 +280,8 @@ namespace ui {
     isPressed = false;
   }
 
-  void Button::draw() {
-    Element::draw();
+  void Button::draw(glm::vec2 lower, glm::vec2 upper) {
+    Element::draw(lower, upper);
 
     float height = size.y;
     float width = size.x;
@@ -277,8 +290,6 @@ namespace ui {
     if (isPressed) {
       col = 1;
     }
-
-    //  printf("drawing button\n");
 
     glPushMatrix();
 
@@ -295,37 +306,298 @@ namespace ui {
     glPopMatrix();
   }
 
-  Pane::Pane() {
-    float viewZoom = 1.0f;
-    glm::vec2 viewCenter = glm::vec2(0,0);
-    glm::vec2 tempViewCenter = glm::vec2(0,0);
-  }
+  void Collection::arrange() {
+    list<Element*>::iterator it;
+    Element* e;
 
-  void Pane::draw() {
-    if (NULL != drawHandler) {
-      (*drawHandler)(this);
+    for (it = children.begin();
+	 it != children.end();
+	 it++) {
+      e = *it;
+      e->arrange();
     }
   }
 
-  void Pane::arrange() {
-    size = upper - lower;
+  Pane::Pane() {
+    viewZoom = 1.0f;
+    viewCenter = glm::vec2(0,0);
+    tempViewCenter = glm::vec2(0,0);
+
+    worldLower = glm::vec2(0,0);
+    worldUpper = glm::vec2(10,10);
   }
 
-  Manager::Manager() {  
-    downElement = NULL;    
+  void Pane::arrange() {
+    //Element::arrange();
+
+    position = glm::vec2(0,0);
+    upper = root->upper;
+    lower = root->lower;
+    size = upper - lower;
+
+    glm::vec2 extents(10.0f, 10.0f);
+
+    float ratio;
+
+    float w = manager->windowWidth;
+    float h = manager->windowHeight;
+
+    if (w < h) {
+      ratio = h / w;
+      extents.y *= ratio;
+    } else {
+      ratio = w / h;
+      extents.x *= ratio;
+    }
+
+    extents *= viewZoom;
+    worldLower = viewCenter - extents;
+    worldUpper = viewCenter + extents;
+
+    cout << "viewZoom = " << viewZoom << endl;
+    cout << "viewCenter = " << viewCenter << endl;
+    cout << "arranged, lower = " << lower << endl;
+    cout << "arranged, upper = " << upper << endl;
+    cout << "arranged, worldLower = " << worldLower << endl;
+    cout << "arranged, worldUpper = " << worldUpper << endl;
+  }
+
+  void Pane::draw(glm::vec2 lower, glm::vec2 upper) {
+    Element::draw(lower, upper);
+
+    if (NULL != drawHandler) {
+      glMatrixMode(GL_PROJECTION); glPushMatrix(); glLoadIdentity();
+      gluOrtho2D(worldLower.x, worldUpper.x, worldLower.y, worldUpper.y);
+
+      glMatrixMode(GL_MODELVIEW); glPushMatrix(); glLoadIdentity();
+      glTranslatef(viewCenter.x, viewCenter.y, 0);
+
+      (*drawHandler)(this);
+
+      glMatrixMode(GL_MODELVIEW); glPopMatrix();
+      glMatrixMode(GL_PROJECTION); glPopMatrix();
+    }
+  }
+
+  Manager* Manager::manager;
+
+  namespace Manager {
+    uint windowWidth;
+    uint windowHeight;
+    int windowMain;
+    int framePeriod;
+
+    glm::vec2 lower;
+    glm::vec2 upper;
+    glm::vec2 size;
+
+    Element* root;
+
+    keyboard_handler* keyboardHandler;
+    keyboard_special_handler* keyboardSpecialHandler;
+
+    Element* downElement;
+    glm::vec2 downPos;
+  }
+
+  Manager::Manager(uint w, uint h, int* argc, char** argv) {  
+    downElement = NULL;
+    windowWidth = w;
+    windowHeight = h;
+    lower = glm::vec2(0,0);
+    upper = glm::vec2(w,h);
+    size = upper - lower;
+    framePeriod = 16;
+
+    glutInit(argc, argv);
+
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+    glutInitWindowSize(windowWidth, windowHeight);
+
+    windowMain = glutCreateWindow("test");
+
+    glutDisplayFunc(&rootHandleDisplay);
+    glutReshapeFunc(&rootHandleResize);
+
+    glutMouseFunc(&rootHandleMouse);
+    glutPassiveMotionFunc(&rootHandleMousePassiveMotion);
+    glutMotionFunc(&rootHandleMouseMotion);
+  
+    glutKeyboardFunc(&rootHandleKeyboard);
+    glutKeyboardUpFunc(&rootHandleKeyboardUp);
+    glutSpecialFunc(&rootHandleKeyboardSpecial);  
+
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+    glDepthFunc(GL_LEQUAL);
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
+
+    glutTimerFunc(framePeriod, &rootHandleTimer, 0);
+  }
+
+  void Manager::mainLoop() {
+    glutMainLoop();
+  }
+
+  void Manager::setRoot(Element* e) {
+    e->manager = manager;
+    e->root = e;
+    root = e;
+    arrange();
+  }
+
+  void Manager::arrange() {
+    lower = glm::vec2(0,0);
+    upper = glm::vec2(windowWidth, windowHeight);
+    size = upper - lower;
+    
+    if (NULL != root) {
+      root->position = lower;
+      root->lower = lower;
+      root->upper = upper;
+      root->size = size;
+    }
+
+    root->arrange();
+  }
+
+  void Manager::draw(glm::vec2 lower, glm::vec2 upper) {
+    glMatrixMode(GL_PROJECTION); glLoadIdentity();
+    gluOrtho2D(0, windowWidth, 0, windowHeight);
+
+    glMatrixMode(GL_MODELVIEW); glLoadIdentity();
+
+    root->draw(lower, upper);
+  }
+
+  void Manager::rootHandleDisplay() {
+    glClearColor(0xff, 0xff, 0xff, 0xff);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    draw(glm::vec2(0,0), glm::vec2(windowWidth, windowHeight));
+
+    glutSwapBuffers();
+  }
+
+  void Manager::setKeyboardHandler(keyboard_handler* h) { keyboardHandler = h; };
+  void Manager::setKeyboardSpecialHandler(keyboard_special_handler* h) { keyboardSpecialHandler = h; };
+
+  void Manager::rootHandleKeyboard(uchar key, int x, int y) {
+    switch (key) {
+    case 27:
+      printf("quitting\n");
+      exit(0);
+      break;
+    default:
+      if (NULL != keyboardHandler) {
+	(*keyboardHandler)(key, glm::vec2(x, y));
+      }
+      break;
+    }
+  }
+
+  void Manager::rootHandleKeyboardSpecial(int key, int x, int y) {
+    switch (key) {
+    default:
+      if (NULL != keyboardSpecialHandler) {
+	(*keyboardSpecialHandler)(key, glm::vec2(x, y));
+      }
+      break;
+    }
+  }
+
+  void Manager::rootHandleKeyboardUp(uchar key, int x, int y) {  
+    switch (key) {
+    default:
+      if (NULL != keyboardHandler) {
+	(*keyboardHandler)(key, glm::vec2(x, y));
+      }
+      break;
+    }
+  }
+  
+  void Manager::rootHandleMousePassiveMotion(int32 x, int32 y) {
+    root->handleMouseMotion(glm::vec2(x,windowHeight - y));
+  }
+
+  void Manager::rootHandleMouseMotion(int32 x, int32 y) {
+    //    if (mouseDragging) {
+    //      glm::vec2 cCoord = coordScreenToWorld(glm::vec2(x,y), mouseDragStartModelview);
+      //tempViewCenter = cCoord - mouseDragStart;
+    //    }
+    rootHandleMousePassiveMotion(x, y);
+  }
+
+  void Manager::rootHandleMouse(int32 button, int32 state, int32 x, int32 y) {
+    if (handleMouseClick(glm::vec2(x, windowHeight - y), button, state)) {
+      return;
+    }
+
+    switch(button) {
+    case GLUT_LEFT_BUTTON:
+      if (state == GLUT_DOWN) {
+	
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
+	//glTranslatef(viewCenter.x, viewCenter.y, 0);
+	//glGetDoublev(GL_MODELVIEW_MATRIX, mouseDragStartModelview);
+	
+	//mouseDragStart = coordScreenToWorld(glm::vec2(x, y), mouseDragStartModelview);
+	//      mouseDragging = true;
+	
+	//handleMouseMotion(x, y);
+	
+	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
+      } else if (state == GLUT_UP) {
+	//if (mouseDragging) {
+	//viewCenter = viewCenter + tempViewCenter;
+	//mouseDragging = false;
+	
+	glutSetCursor(GLUT_CURSOR_INHERIT);
+      }
+      break; 
+    }
+  }
+
+  void Manager::rootHandleResize(int32 w, int32 h) {
+    glViewport(0, 0, w, h);
+
+    windowWidth = w;
+    windowHeight = h;
+
+    arrange();
+  }
+
+  void Manager::rootHandleTimer(int t) {
+    glutSetWindow(windowMain);
+    glutPostRedisplay();
+    glutTimerFunc(framePeriod, rootHandleTimer, 0);
   }
 
   Element* Manager::handleMouseClick(glm::vec2 pos, uint button, uint state) {    
     Element* e = NULL;
+    
+    cout << "Manager::handleMouseClick" << endl;
 
     if (button == GLUT_LEFT_BUTTON &&
 	state == GLUT_DOWN) {
-      e = Element::handleMouseClick(pos, button, state);
+      e = root->handleMouseClick(pos, button, state);
+      cout << "got an e=" << e << endl;
       if (NULL != e) {
+	cout << "e=" << (*e) << endl;
+	cout << "not null" << endl;
 	downElement = e;
 	downPos = pos;
+	e->handleMouseDown(pos);
       }
-      e->handleMouseDown(pos);
     } else if (state == GLUT_UP) {
       if (NULL != downElement) {
 	downElement->handleMouseUp(downPos, pos);
@@ -333,11 +605,12 @@ namespace ui {
       }
     }
 
+    cout << "Manager::handleMouseClick done" << endl;
+
     return e;
   }
 
   Element* Manager::getObjectAtScreen(glm::vec2 pos) {
     return NULL;
   }
-
 }

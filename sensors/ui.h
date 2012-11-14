@@ -1,5 +1,6 @@
 #include <list>
 #include <iostream>
+#include <functional>
 #include "common.h"
 #include "glcommon.h"
 
@@ -8,16 +9,19 @@
 
 namespace ui {
   class Element;
+  class Manager;
 
   typedef void (click_handler)(Element* e, glm::vec2 pos, uint button, uint state);
   typedef void (over_handler)(Element* e, glm::vec2 pos, uint state);
   typedef void (motion_handler)(Element* e, glm::vec2 pos);
-  //typedef void (handler)(Element* e, glm::vec2 pos);
 
   typedef void (draw_handler)(Element* e);
 
   typedef void (down_handler)(Element* e, glm::vec2 pos);
   typedef void (up_handler)(Element* e, glm::vec2 posDown, glm::vec2 posUp);
+
+  typedef void (keyboard_handler)(int key, glm::vec2 pos);
+  typedef void (keyboard_special_handler)(uchar key, glm::vec2 pos);
 
   class Element {
   private:
@@ -29,7 +33,9 @@ namespace ui {
     bool isSelected;
     
     list<Element*> children;
-    list<Element*> active;
+    Element* parent;
+    Element* root;
+    Manager* manager;
 
     click_handler* clickHandler;
     over_handler* overHandler;
@@ -45,7 +51,7 @@ namespace ui {
     glm::vec2 upper;
 
     Element();
-    virtual void draw();
+    virtual void draw(glm::vec2 lower, glm::vec2 upper);
     virtual void arrange();
     virtual bool isOver(glm::vec2 pos);
     virtual void overElements(glm::vec2 pos, list<Element*>* collector);
@@ -85,8 +91,8 @@ namespace ui {
   };
 
   class Collection: public Rectangle {
-  private:
   public:
+    void arrange();
   };
 
   class Button: public Rectangle {
@@ -94,7 +100,7 @@ namespace ui {
     bool isPressed;
     std::string label;
     Button(std::string l);
-    void draw();
+    void draw(glm::vec2 lower, glm::vec2 upper);
     void arrange();
     Element* handleMouseClick(glm::vec2 pos, uint button, uint state);
     void handleMouseUp(glm::vec2 posDown, glm::vec2 posUp);
@@ -108,20 +114,59 @@ namespace ui {
     float viewZoom;
     glm::vec2 viewCenter;
     glm::vec2 tempViewCenter;
+    glm::vec2 worldLower;
+    glm::vec2 worldUpper;
+
     draw_handler* drawHandler;
 
-    void draw();
+    void draw(glm::vec2 lower, glm::vec2 upper);
     void arrange();
   };
 
-  class Manager: public Element {
+  class Manager {
   public:
-    Element* downElement;
-    glm::vec2 downPos;
+    static Manager* manager;
 
-    Manager();
-    Element* getObjectAtScreen(glm::vec2 pos);
-    Element* handleMouseClick(glm::vec2 pos, uint button, uint state);
+    static uint windowWidth;
+    static uint windowHeight;
+    static int windowMain;
+    static int framePeriod;
+
+    static glm::vec2 lower;
+    static glm::vec2 upper;
+    static glm::vec2 size;
+
+    static Element* root;
+
+    static keyboard_handler* keyboardHandler;
+    static keyboard_special_handler* keyboardSpecialHandler;
+
+    static Element* downElement;
+    static glm::vec2 downPos;
+
+    Manager(uint w, uint h, int* argc, char** argv);
+    static Element* getObjectAtScreen(glm::vec2 pos);
+    static Element* handleMouseClick(glm::vec2 pos, uint button, uint state);
+    static void draw(glm::vec2 lower, glm::vec2 upper);
+
+    static void setRoot(Element* e);
+
+    static void arrange();
+
+    static void setKeyboardHandler(keyboard_handler* h);
+    static void setKeyboardSpecialHandler(keyboard_special_handler* h);
+
+    static void mainLoop();
+
+    static void rootHandleDisplay();
+    static void rootHandleKeyboard(uchar key, int x, int y);
+    static void rootHandleKeyboardSpecial(int key, int x, int y);
+    static void rootHandleKeyboardUp(uchar key, int x, int y);
+    static void rootHandleMousePassiveMotion(int x, int y);
+    static void rootHandleMouseMotion(int x, int y);
+    static void rootHandleMouse(int button, int state, int x, int y);
+    static void rootHandleResize(int w, int h);
+    static void rootHandleTimer(int t);
   };
   
 }
