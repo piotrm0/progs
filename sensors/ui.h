@@ -7,6 +7,10 @@
 #define MOUSE_OVER 0
 #define MOUSE_OUT  1
 
+#define MOUSE_DRAG_START 0
+#define MOUSE_DRAG_MOTION 1
+#define MOUSE_DRAG_END 2
+
 namespace ui {
   class Element;
   class Manager;
@@ -14,6 +18,11 @@ namespace ui {
   typedef void (click_handler)(Element* e, glm::vec2 pos, uint button, uint state);
   typedef void (over_handler)(Element* e, glm::vec2 pos, uint state);
   typedef void (motion_handler)(Element* e, glm::vec2 pos);
+
+  typedef void (drag_handler)(Element* e,
+			      uint dragEvent,
+			      glm::vec2 startPos,
+			      glm::vec2 currentPos);
 
   typedef void (draw_handler)(Element* e);
 
@@ -40,6 +49,7 @@ namespace ui {
     click_handler* clickHandler;
     over_handler* overHandler;
     motion_handler* motionHandler;
+    drag_handler* dragHandler;
 
     down_handler* downHandler;
     up_handler* upHandler;
@@ -58,8 +68,9 @@ namespace ui {
     virtual void handleMouseOver(glm::vec2 pos);
     virtual void handleMouseOut(glm::vec2 pos);
     virtual void handleMouseDown(glm::vec2 pos);
-    virtual void handleMouseUp(glm::vec2 pos, glm::vec2 pos);
+    virtual void handleMouseUp(glm::vec2 downPos, glm::vec2 upPos);
     virtual void handleMouseMotion(glm::vec2 pos);
+    virtual void handleMouseDrag(uint dragEvent, glm::vec2 initPos, glm::vec2 currentPos);
     virtual Element* handleMouseClick(glm::vec2 pos, uint button, uint state);
 
     void setDownHandler(down_handler* h);
@@ -67,6 +78,7 @@ namespace ui {
     void setClickHandler(click_handler* h);
     void setOverHandler(over_handler* h);
     void setMotionHandler(motion_handler* h);
+    void setDragHandler(drag_handler* h);
 
     void addChild(Element* c);
     void removeChild(Element* c);
@@ -111,11 +123,15 @@ namespace ui {
   public:
     Pane();
 
+    bool dragging;
     float viewZoom;
     glm::vec2 viewCenter;
     glm::vec2 tempViewCenter;
     glm::vec2 worldLower;
     glm::vec2 worldUpper;
+
+    Element* handleMouseClick(glm::vec2 pos, uint button, uint state);
+    void Pane::handleMouseDrag(uint dragEvent, glm::vec2 startPos, glm::vec2 endPos);
 
     draw_handler* drawHandler;
 
@@ -126,6 +142,10 @@ namespace ui {
   class Manager {
   public:
     static Manager* manager;
+
+    static bool mouseDragging;
+    static Element* downElement;
+    static glm::vec2 downPos;
 
     static uint windowWidth;
     static uint windowHeight;
@@ -141,12 +161,8 @@ namespace ui {
     static keyboard_handler* keyboardHandler;
     static keyboard_special_handler* keyboardSpecialHandler;
 
-    static Element* downElement;
-    static glm::vec2 downPos;
-
     Manager(uint w, uint h, int* argc, char** argv);
     static Element* getObjectAtScreen(glm::vec2 pos);
-    static Element* handleMouseClick(glm::vec2 pos, uint button, uint state);
     static void draw(glm::vec2 lower, glm::vec2 upper);
 
     static void setRoot(Element* e);
@@ -167,8 +183,7 @@ namespace ui {
     static void rootHandleMouse(int button, int state, int x, int y);
     static void rootHandleResize(int w, int h);
     static void rootHandleTimer(int t);
-  };
-  
+  };  
 }
 
 ostream& operator<<(ostream& os, ui::Element& e);

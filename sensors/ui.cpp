@@ -30,6 +30,7 @@ namespace ui {
     motionHandler = NULL;
     downHandler = NULL;
     upHandler = NULL;
+    dragHandler = NULL;
   }
 
   void Element::setDownHandler(down_handler* h) { downHandler = h; }
@@ -37,6 +38,7 @@ namespace ui {
   void Element::setClickHandler(click_handler* h) { clickHandler = h; }
   void Element::setOverHandler(over_handler* h) { overHandler = h; }
   void Element::setMotionHandler(motion_handler* h) { motionHandler = h; }
+  void Element::setDragHandler(drag_handler* h) { dragHandler = h; }
 
   bool Element::isOver(glm::vec2 pos) {
     return (glm::all(glm::greaterThanEqual(pos, lower)) &&
@@ -69,6 +71,12 @@ namespace ui {
     cout << "clickHandler handled" << endl;
 
     return captured;
+  }
+
+  void Element::handleMouseDrag(uint dragEvent, glm::vec2 startPos, glm::vec2 endPos) {
+    if (NULL != dragHandler) {
+      (*dragHandler)(this, dragEvent, startPos, endPos);
+    }
   }
 
   void Element::handleMouseMotion(glm::vec2 pos) {
@@ -325,6 +333,43 @@ namespace ui {
 
     worldLower = glm::vec2(0,0);
     worldUpper = glm::vec2(10,10);
+
+    dragging = false;
+  }
+
+  Element* Pane::handleMouseClick(glm::vec2 pos, uint button, uint state) {
+    Element* e = Element::handleMouseClick(pos, button, state);
+
+    if (NULL == e) {
+      return this;
+    } else {
+      return e;
+    }
+  }
+
+  void Pane::handleMouseDrag(uint dragEvent, glm::vec2 startPos, glm::vec2 endPos) {
+    switch (dragEvent) {
+    case MOUSE_DRAG_START:
+      dragging = true;
+      
+      glMatrixMode(GL_MODELVIEW);
+      glPushMatrix();
+      glLoadIdentity();
+      glTranslatef(viewCenter.x, viewCenter.y, 0);
+      glGetDoublev(GL_MODELVIEW_MATRIX, mouseDragStartModelview);
+	
+      mouseDragStartWorld = coordScreenToWorld(glm::vec2(x, y), mouseDragStartModelview);
+
+      break;
+    case MOUSE_DRAG_MOTION:
+
+      break;
+    case MOUSE_DRAG_END:
+      viewCenter = viewCenter + tempViewCenter;
+
+      dragging = false;
+      break;
+    }
   }
 
   void Pane::arrange() {
@@ -380,25 +425,27 @@ namespace ui {
   }
 
   Manager* Manager::manager;
+  uint Manager::windowWidth;
 
-  namespace Manager {
-    uint windowWidth;
-    uint windowHeight;
-    int windowMain;
-    int framePeriod;
+  //  namespace Manager {
 
-    glm::vec2 lower;
-    glm::vec2 upper;
-    glm::vec2 size;
+    uint Manager::windowHeight;
+    int Manager::windowMain;
+    int Manager::framePeriod;
 
-    Element* root;
+    glm::vec2 Manager::lower;
+    glm::vec2 Manager::upper;
+    glm::vec2 Manager::size;
 
-    keyboard_handler* keyboardHandler;
-    keyboard_special_handler* keyboardSpecialHandler;
+    Element* Manager::root;
 
-    Element* downElement;
-    glm::vec2 downPos;
-  }
+    keyboard_handler* Manager::keyboardHandler;
+    keyboard_special_handler* Manager::keyboardSpecialHandler;
+
+    Element* Manager::downElement;
+    glm::vec2 Manager::downPos;
+    bool Manager::mouseDragging;
+  //  }
 
   Manager::Manager(uint w, uint h, int* argc, char** argv) {  
     downElement = NULL;
@@ -525,43 +572,51 @@ namespace ui {
   }
   
   void Manager::rootHandleMousePassiveMotion(int32 x, int32 y) {
-    root->handleMouseMotion(glm::vec2(x,windowHeight - y));
+    glm::vec2 pos = glm::vec2(x, windowHeight - y);
+    root->handleMouseMotion(pos);
+
+    if (mouseDragging &&
+	NULL != downElement) {
+      downElement->handleMouseDrag(MOUSE_DRAG_MOTION, downPos, pos);
+    }
   }
 
   void Manager::rootHandleMouseMotion(int32 x, int32 y) {
-    //    if (mouseDragging) {
-    //      glm::vec2 cCoord = coordScreenToWorld(glm::vec2(x,y), mouseDragStartModelview);
-      //tempViewCenter = cCoord - mouseDragStart;
-    //    }
     rootHandleMousePassiveMotion(x, y);
   }
 
   void Manager::rootHandleMouse(int32 button, int32 state, int32 x, int32 y) {
-    if (handleMouseClick(glm::vec2(x, windowHeight - y), button, state)) {
-      return;
-    }
+    glm::vec2 pos = glm::vec2(x, windowHeight - y);
+    Element* e;
 
     switch(button) {
     case GLUT_LEFT_BUTTON:
-      if (state == GLUT_DOWN) {
-	
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadIdentity();
-	//glTranslatef(viewCenter.x, viewCenter.y, 0);
-	//glGetDoublev(GL_MODELVIEW_MATRIX, mouseDragStartModelview);
-	
-	//mouseDragStart = coordScreenToWorld(glm::vec2(x, y), mouseDragStartModelview);
-	//      mouseDragging = true;
-	
-	//handleMouseMotion(x, y);
-	
-	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
-      } else if (state == GLUT_UP) {
-	//if (mouseDragging) {
-	//viewCenter = viewCenter + tempViewCenter;
-	//mouseDragging = false;
-	
-	glutSetCursor(GLUT_CURSOR_INHERIT);
+      if (state == GLUT_DOWN) {	
+	e = root->handleMouseClick(pos, button, state);
+	if (NULL != e) {
+	  cout << "e=" << (*e) << endl;
+	  downElement = e;
+	  downPos = pos;
+	  mouseDragging = true;
+	  e->handleMouseDown(pos);
+	  e->handleMouseDrag(MOUSE_DRAG_START, pos, pos);
+
+	  glutSetCursor(GLUT_CURSOR_CROSSHAIR);
+	}
+      }  else if (state == GLUT_UP) {
+	if (NULL != downElement) {
+	  downElement->handleMouseUp(downPos, pos);
+	  glutSetCursor(GLUT_CURSOR_INHERIT);
+	}
+	if (mouseDragging) {
+	  if (NULL != downElement) {
+	    downElement->handleMouseDrag(MOUSE_DRAG_END, downPos, pos);
+	  }
+	  
+	  mouseDragging = false;
+
+	}
+	downElement = NULL;
       }
       break; 
     }
@@ -580,34 +635,6 @@ namespace ui {
     glutSetWindow(windowMain);
     glutPostRedisplay();
     glutTimerFunc(framePeriod, rootHandleTimer, 0);
-  }
-
-  Element* Manager::handleMouseClick(glm::vec2 pos, uint button, uint state) {    
-    Element* e = NULL;
-    
-    cout << "Manager::handleMouseClick" << endl;
-
-    if (button == GLUT_LEFT_BUTTON &&
-	state == GLUT_DOWN) {
-      e = root->handleMouseClick(pos, button, state);
-      cout << "got an e=" << e << endl;
-      if (NULL != e) {
-	cout << "e=" << (*e) << endl;
-	cout << "not null" << endl;
-	downElement = e;
-	downPos = pos;
-	e->handleMouseDown(pos);
-      }
-    } else if (state == GLUT_UP) {
-      if (NULL != downElement) {
-	downElement->handleMouseUp(downPos, pos);
-	downElement = NULL;
-      }
-    }
-
-    cout << "Manager::handleMouseClick done" << endl;
-
-    return e;
   }
 
   Element* Manager::getObjectAtScreen(glm::vec2 pos) {
